@@ -5,8 +5,7 @@ on:
     branches:
       - main
     tags:
-      - 'v*'
-      - '[0-9]+.[0-9]+*'
+      - '**'
   pull_request:
     branches:
       - main
@@ -34,7 +33,8 @@ jobs:
             qt6-multimedia-dev \
             libgl1-mesa-dev \
             libglvnd-dev \
-            libsdl2-dev
+            libsdl2-dev \
+            xvfb
 
       - name: Configure CMake
         run: |
@@ -51,6 +51,7 @@ jobs:
 
       - name: Run GUI selftest
         run: |
+          xvfb-run -a ./build/bin/gecko --selftest ./build/bin/gecko_testcore.so ./selftest-out || \
           QT_QPA_PLATFORM=offscreen ./build/bin/gecko --selftest ./build/bin/gecko_testcore.so ./selftest-out
 
       - name: Package Linux release
@@ -75,6 +76,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up MSVC environment
+        uses: ilammy/msvc-dev-cmd@v1
+
       - name: Install Qt 6
         uses: jurplel/install-qt-action@v3
         with:
@@ -83,9 +87,6 @@ jobs:
           target: 'desktop'
           arch: 'win64_msvc2019_64'
           modules: 'qtmultimedia'
-
-      - name: Set up MSVC environment
-        uses: ilammy/msvc-dev-cmd@v1
 
       - name: Configure CMake
         run: |
@@ -177,16 +178,6 @@ jobs:
         run: |
           sdkmanager --install "ndk;27.0.12077973" "cmake;3.22.1"
 
-      - name: Cache Gradle packages
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('android/**/*.gradle*', 'android/**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
       - name: Check JNI bridge syntax
         run: bash scripts/check-android-jni.sh
 
@@ -202,8 +193,10 @@ jobs:
             cp android/app/build/outputs/apk/release/app-release-unsigned.apk gecko-android.apk
           elif [ -f android/app/build/outputs/apk/release/app-release.apk ]; then
             cp android/app/build/outputs/apk/release/app-release.apk gecko-android.apk
-          else
+          elif [ -f android/app/build/outputs/apk/debug/app-debug.apk ]; then
             cp android/app/build/outputs/apk/debug/app-debug.apk gecko-android.apk
+          else
+            find android/app/build/outputs/apk -name "*.apk" -exec cp {} gecko-android.apk \;
           fi
 
       - name: Upload artifact
