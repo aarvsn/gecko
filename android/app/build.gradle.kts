@@ -7,6 +7,7 @@ plugins {
 android {
     namespace = "com.gecko.emulator"
     compileSdk = 35
+    ndkVersion = "27.0.12077973"
 
     defaultConfig {
         applicationId = "com.gecko.emulator"
