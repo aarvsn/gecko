@@ -80,7 +80,7 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
 
       - name: Install Qt 6
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           version: '6.7.3'
           host: 'windows'
@@ -92,6 +92,7 @@ jobs:
         run: |
           cmake -B build -G "Ninja" `
             -DCMAKE_BUILD_TYPE=Release `
+            -DCMAKE_PREFIX_PATH="$env:QT_ROOT_DIR" `
             -DGECKO_BUILD_DESKTOP=ON `
             -DGECKO_BUILD_TESTS=ON
 
@@ -120,7 +121,7 @@ jobs:
 
   build-macos:
     name: macOS (Universal / arm64 & x86_64)
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -172,7 +173,7 @@ jobs:
           java-version: '17'
 
       - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
 
       - name: Install NDK and CMake
         run: |

@@ -12,6 +12,8 @@ CMakeLists.txt.user
 android/.gradle/
 android/build/
 android/app/build/
+android/app/.cxx/
+.cxx/
 android/local.properties
 android/.idea/
 *.apk.idsig

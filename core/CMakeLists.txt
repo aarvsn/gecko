@@ -24,12 +24,14 @@ target_include_directories(gecko-core
 
 target_compile_features(gecko-core PUBLIC cxx_std_17)
 
+target_link_libraries(gecko-core PUBLIC Threads::Threads)
+
 if(WIN32)
     # nothing extra: LoadLibrary/FreeLibrary live in kernel32
 elseif(APPLE)
     target_link_libraries(gecko-core PUBLIC ${CMAKE_DL_LIBS})
 else()
-    target_link_libraries(gecko-core PUBLIC ${CMAKE_DL_LIBS} Threads::Threads)
+    target_link_libraries(gecko-core PUBLIC ${CMAKE_DL_LIBS})
 endif()
 
 if(MSVC)
