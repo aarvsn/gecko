@@ -1,0 +1,26 @@
+# Build directories
+build*/
+out/
+cmake-build-*/
+
+# Qt / CMake artifacts
+CMakeLists.txt.user
+*.autosave
+.DS_Store
+
+# Android
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/.idea/
+*.apk.idsig
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# User config produced by running the app
+gecko.json
+selftest-config.json

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Gecko logo: stylized green gecko curling around itself -->
+  <g fill="none" stroke="#3aa657" stroke-width="6" stroke-linecap="round">
+    <!-- tail curl -->
+    <path d="M44 50 C 54 50, 58 40, 52 34 C 47 29, 38 33, 40 40" stroke="#7fce8f"/>
+    <!-- body -->
+    <path d="M40 40 C 30 46, 18 44, 14 34"/>
+    <!-- head -->
+  </g>
+  <circle cx="14" cy="30" r="9" fill="#3aa657"/>
+  <circle cx="11" cy="27" r="2.2" fill="#0f2417"/>
+  <g stroke="#3aa657" stroke-width="4.5" stroke-linecap="round" fill="none">
+    <path d="M20 40 L 12 50"/>
+    <path d="M28 46 L 26 58"/>
+    <path d="M18 24 L 8 20"/>
+  </g>
+  <circle cx="10" cy="19" r="2.4" fill="#3aa657"/>
+  <circle cx="11" cy="51" r="2.4" fill="#3aa657"/>
+  <circle cx="26" cy="59" r="2.4" fill="#3aa657"/>
+</svg>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gecko</string>
+    <string name="library_empty">No games yet.\nAdd your ROM directory or import files.</string>
+    <string name="add_directory">Add ROM folder</string>
+    <string name="import_files">Import files</string>
+    <string name="settings">Settings</string>
+    <string name="cores">Cores</string>
+    <string name="no_cores">No cores installed.\nCopy libretro core libraries (.so) into\nAndroid/data/com.gecko.emulator/files/cores</string>
+    <string name="menu">Menu</string>
+    <string name="resume">Resume</string>
+    <string name="save_state">Save state</string>
+    <string name="load_state">Load state</string>
+    <string name="reset_game">Reset game</string>
+    <string name="screenshot">Screenshot</string>
+    <string name="exit_game">Exit to library</string>
+    <string name="fps_format">FPS %.1f</string>
+    <string name="paused">Paused</string>
+</resources>
