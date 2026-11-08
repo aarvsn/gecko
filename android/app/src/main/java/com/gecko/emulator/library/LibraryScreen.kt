@@ -257,8 +257,10 @@ private fun initials(title: String): String =
 
 private fun coverBrush(title: String): Brush {
     val hue = (title.hashCode().mod(360) + 360) % 360
-    val base = Color.hsl(hue.toFloat(), 0.45f, 0.42f)
     return Brush.verticalGradient(
-        listOf(base.copy(lightness = 0.55f), base.copy(lightness = 0.3f)),
+        listOf(
+            Color.hsl(hue.toFloat(), 0.45f, 0.55f),
+            Color.hsl(hue.toFloat(), 0.45f, 0.3f),
+        ),
     )
 }

@@ -151,7 +151,7 @@ jobs:
           mkdir -p dist
           cp -R build/bin/gecko.app dist/
           cp README.md LICENSE NOTICE.md dist/
-          ditto -c -k --sequentially --keepParent dist/gecko.app gecko-macos.zip
+          ditto -c -k --keepParent dist/gecko.app gecko-macos.zip
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4

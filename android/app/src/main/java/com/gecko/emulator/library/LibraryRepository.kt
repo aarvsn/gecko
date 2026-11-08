@@ -126,6 +126,16 @@ class LibraryRepository(private val context: Context) {
     fun screenshotFile(gameTitle: String): File =
         File(screenshotsDir, "$gameTitle-${System.currentTimeMillis()}.png")
 
+    private fun findArtwork(romFile: File): String? {
+        val parent = romFile.parentFile ?: return null
+        val stem = romFile.nameWithoutExtension
+        for (ext in listOf("png", "jpg", "jpeg", "webp")) {
+            val candidate = File(parent, "$stem.$ext")
+            if (candidate.exists()) return candidate.absolutePath
+        }
+        return null
+    }
+
     companion object {
         /** "super_mario_world_(USA)" -> "super mario world". */
         fun prettify(stem: String): String {
