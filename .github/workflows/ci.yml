@@ -182,6 +182,9 @@ jobs:
       - name: Check JNI bridge syntax
         run: bash scripts/check-android-jni.sh
 
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
       - name: Build Android APK
         working-directory: android
         run: |
