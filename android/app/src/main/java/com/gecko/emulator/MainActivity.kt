@@ -16,7 +16,9 @@ import com.gecko.emulator.game.GameActivity
 import com.gecko.emulator.library.GameEntry
 import com.gecko.emulator.library.LibraryRepository
 import com.gecko.emulator.library.LibraryScreen
+import com.gecko.emulator.settings.CoresScreen
 import com.gecko.emulator.settings.SettingsRepositoryShared
+import com.gecko.emulator.settings.SettingsScreen
 import com.gecko.emulator.ui.GeckoTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,7 +30,6 @@ class MainViewModel : ViewModel() {
     var games by mutableStateOf<List<GameEntry>>(emptyList())
     var coresCount by mutableStateOf(0)
     var screen by mutableStateOf<Screen>(Screen.Library)
-        private set
 
     enum class Screen { Library, Cores, Settings }
 
@@ -106,7 +107,7 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                     MainViewModel.Screen.Cores -> {
-                        SettingsScreen.CoresScreen(
+                        CoresScreen(
                             repository = repo,
                             onBack = {
                                 viewModel.screen = MainViewModel.Screen.Library

@@ -17,6 +17,10 @@ using LogCallback = void (*)(LogLevel level, const char* message, size_t length,
 // Install a global log sink. Passing nullptr restores the stderr fallback.
 void setLogCallback(LogCallback callback, void* userData);
 
+#if defined(__GNUC__) || defined(__clang__)
 void logMessage(LogLevel level, const char* fmt, ...) __attribute__((format(printf, 2, 3)));
+#else
+void logMessage(LogLevel level, const char* fmt, ...);
+#endif
 
 } // namespace gecko
